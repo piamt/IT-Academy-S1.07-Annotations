@@ -6,14 +6,17 @@ import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.math.BigDecimal;
 
 public class Main {
+
+    @SuppressWarnings("Deprecated")
     public static void main(String[] args) throws IOException, NoSuchMethodException {
 
         System.out.println("Nivell 1 - Exercici 1");
-        Worker worker = new Worker("Peter", "Jolie", 15);
-        OfficeWorker officeWorker = new OfficeWorker("Peter", "Jolie", 15);
-        OnlineWorker onlineWorker = new OnlineWorker("Daniel", "Calvo", 23);
+        Worker worker = new Worker("Peter", "Jolie", new BigDecimal(15));
+        OfficeWorker officeWorker = new OfficeWorker("Peter", "Jolie", new BigDecimal(20));
+        OnlineWorker onlineWorker = new OnlineWorker("Daniel", "Calvo", new BigDecimal(23));
 
         System.out.println(worker.calculateSalary(30));
         System.out.println(officeWorker.calculateSalary(30));
@@ -27,13 +30,13 @@ public class Main {
                 .setPrettyPrinting()
                 .create();
 
-        String json = gson.toJson(onlineWorker);
+        String json = gson.toJson(officeWorker);
         System.out.println(json);
 
-        if (worker.getClass().isAnnotationPresent(JSONSerializable.class)) {
-            String directory = worker.getClass().getAnnotation(JSONSerializable.class).directory();
+        if (officeWorker.getClass().isAnnotationPresent(JSONSerializable.class)) {
+            String directory = officeWorker.getClass().getAnnotation(JSONSerializable.class).directory();
             try (Writer writer = new FileWriter(directory)) {
-                gson.toJson(onlineWorker, writer);
+                gson.toJson(officeWorker, writer);
             } catch (IOException e) {
                 System.out.println("Error creating json object");
             }

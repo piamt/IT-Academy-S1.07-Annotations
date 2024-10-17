@@ -50,3 +50,5 @@ Fes un pull request
 ### Notes Exercici Nivell 2
 Creada una @interface amb Target 'type' i afegida a la classe principal Worker amb un directory específic.
 Al Main he fet servir GSon per convertir la instància de worker a JSON. Després he creat el fitxer al directori indicat a l'annotació i escrit a dins el JSON generat.
+
+Per últim, afegim l'annotació 'Retention' per registrar a runtime.  

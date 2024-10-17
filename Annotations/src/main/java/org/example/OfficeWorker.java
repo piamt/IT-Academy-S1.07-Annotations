@@ -1,17 +1,18 @@
 package org.example;
 
-@SuppressWarnings("Deprecated") // TODO: No cambia nada?
+import java.math.BigDecimal;
+
 public class OfficeWorker extends Worker {
 
-    static int gas = 100;
+    private static final BigDecimal GAS = new BigDecimal("100");
 
-    public OfficeWorker(String name, String surname, int salaryPerHour) {
+    public OfficeWorker(String name, String surname, BigDecimal salaryPerHour) {
         super(name, surname, salaryPerHour);
     }
 
     @Override
-    public int calculateSalary(int hours) {
-        return (hours * this.salaryPerHour) + gas;
+    public BigDecimal calculateSalary(Integer hours) {
+        return (BigDecimal.valueOf(hours).multiply(this.salaryPerHour).add(GAS));
     }
 
     @Deprecated
